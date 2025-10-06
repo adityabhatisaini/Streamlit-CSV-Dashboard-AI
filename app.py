@@ -15,6 +15,7 @@ import io
 import re
 import textwrap
 import os
+import numpy as np
 
 # Optional OpenAI usage: if you set OPENAI_API_KEY in env, the app will try to use OpenAI to parse complex queries.
 USE_OPENAI = bool(os.getenv('OPENAI_API_KEY'))
@@ -52,10 +53,11 @@ def load_sample_sales():
     df = pd.DataFrame({
         'order_id': range(1, n+1),
         'order_date': rng,
-        'region': pd.Categorical(pd.np.random.choice(['North','South','East','West'], size=n)),
-        'product': pd.np.random.choice(['Phone','Charger','Headset','Cover','Tablet'], size=n),
-        'units_sold': pd.np.random.randint(1, 10, size=n),
-        'unit_price': pd.np.random.uniform(10, 1000, size=n).round(2)
+        'region': pd.Categorical(np.random.choice(['North','South','East','West'], size=n)),
+        'product': np.random.choice(['Phone','Charger','Headset','Cover','Tablet'], size=n),
+        'units_sold': np.random.randint(1, 10, size=n),
+        'unit_price': np.random.uniform(10, 1000, size=n).round(2)
+
     })
     df['revenue'] = (df['units_sold'] * df['unit_price']).round(2)
     return df
