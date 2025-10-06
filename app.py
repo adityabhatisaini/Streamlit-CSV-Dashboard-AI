@@ -15,7 +15,7 @@ import io
 import re
 import textwrap
 import os
-pip install streamlit
+
 pip install pandas
 pip install plotly
 
