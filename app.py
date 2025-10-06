@@ -16,10 +16,6 @@ import re
 import textwrap
 import os
 
-pip install pandas
-pip install plotly
-
-
 # Optional OpenAI usage: if you set OPENAI_API_KEY in env, the app will try to use OpenAI to parse complex queries.
 USE_OPENAI = bool(os.getenv('OPENAI_API_KEY'))
 if USE_OPENAI:
