@@ -17,14 +17,6 @@ import textwrap
 import os
 import numpy as np
 
-# Optional OpenAI usage: if you set OPENAI_API_KEY in env, the app will try to use OpenAI to parse complex queries.
-USE_OPENAI = bool(os.getenv('OPENAI_API_KEY'))
-if USE_OPENAI:
-    try:
-        from openai import OpenAI
-        client = OpenAI()
-    except Exception as e:
-        USE_OPENAI = False
 
 st.set_page_config(page_title="CSV Dashboard Generator", layout="wide")
 
@@ -35,7 +27,7 @@ st.write("Upload a CSV, ask a plain-English question, and get an interactive das
 with st.sidebar:
     st.header("Upload / Settings")
     uploaded_file = st.file_uploader("Upload CSV file", type=['csv'])
-    sample_data = st.selectbox("Or try sample dataset:", ["(none)", "Sample sales data"], index=0)
+    sample_data = st.selectbox("Or try predefined dataset:", ["(none)", "Predefined sales data"], index=0)
     if sample_data != "(none)":
         uploaded_file = None
 
@@ -74,7 +66,7 @@ else:
     df = None
 
 if df is None:
-    st.info("Upload a CSV or pick the sample dataset from the sidebar to get started.")
+    st.info("Upload a CSV or pick the predefined dataset from the sidebar to get started.")
     st.stop()
 
 st.subheader("Data preview")
